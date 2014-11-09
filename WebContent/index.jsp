@@ -4,8 +4,8 @@
 
 <script>
 $( document ).ready(function() {
-    $("#sender").val("Linfeng");
-    $("#receiver").val("Lu");
+    $("#sender").val("lu");
+   // $("#receiver").val("");
     
     $(document).keypress(function(e) {
         if(e.which == 13) {
