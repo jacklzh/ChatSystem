@@ -15,23 +15,14 @@ target/
 *.ear
 *.db
  
-######################
-# Windows
-######################
- 
-# Windows image file caches
-Thumbs.db 
- 
-# Folder config file
-Desktop.ini
+
  
 ######################
 # OSX
 ######################
  
 .DS_Store
-.svn
- 
+
 # Thumbnails
 ._*
  
@@ -45,7 +36,6 @@ Desktop.ini
 ######################
  
 *.pydevproject
-
 .metadata
 bin/**
 tmp/**
@@ -55,7 +45,6 @@ tmp/**/*
 *.swp
 *~.nib
 local.properties
-
 .settings/
 .loadpath
 /src/main/resources/rebel.xml
