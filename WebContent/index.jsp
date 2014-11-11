@@ -57,15 +57,47 @@ function fetchdata(){
 			  	var psconsole = $('#logtxt');
 			    if(psconsole.length)
 			       psconsole.scrollTop(psconsole[0].scrollHeight - psconsole.height());
+			    gotANewMessage();
 			  }
 		  }
 	});
 }
 
+	var blinkInterval;
+	var oldTitle = document.title;
+	function gotANewMessage() {
+		if (!isfocused) { // or whatever the property is 
+			blinkInterval = setInterval(function blink() {
+				if (window.blinkOn) {
+					document.title = "New Message!";
+					window.blinkOn = false;
+				} else {
+					document.title = oldTitle;
+					window.blinkOn = true;
+				}
+			}, 500);
+		}
+	}
 
+	var isfocused;
 
+	$(window).focus(function() {
+		if (blinkInterval)
+			clearInterval(blinkInterval);
+		blinkInterval = false;
+		if (!isfocused)
+			isfocused = setInterval(function() {
+				console.log(window.isActive ? 'active' : 'inactive');
+			}, 1000);
+	});
+
+	$(window).blur(function() {
+		clearInterval(isfocused);
+		isfocused = 0;
+		document.title = oldTitle;
+	});
 </script>
-
+<title>ChatSystem</title>
 </head>
 <body style="overflow:hidden">
 <div class="wrap">
