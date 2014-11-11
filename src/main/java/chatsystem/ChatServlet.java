@@ -16,6 +16,7 @@ public class ChatServlet extends HttpServlet{
 	private static final ConcurrentHashMap<String, ArrayList<String>> chatLog = new ConcurrentHashMap<String, ArrayList<String>>(); 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");
 		PrintWriter pw = response.getWriter();
 		if (type.equals("send")) {
@@ -28,7 +29,7 @@ public class ChatServlet extends HttpServlet{
 			}
 			
 			chatLog.get(receiver).add(sender+": "+message.trim());
-			System.out.println("send to " + receiver +" successfully "+message);
+			System.out.println("send to " + receiver +" successfully "+new String(message.getBytes("UTF-8")));
 			pw.print("send to " + receiver +" successfully");
 		} else {
 			String username = request.getParameter("username");
@@ -42,7 +43,7 @@ public class ChatServlet extends HttpServlet{
 					}
 					msgs.clear();
 				}
-				System.out.println(result);
+				System.out.println(new String(result.getBytes("UTF-8")));
 				pw.print(result);
 			}
 		}
